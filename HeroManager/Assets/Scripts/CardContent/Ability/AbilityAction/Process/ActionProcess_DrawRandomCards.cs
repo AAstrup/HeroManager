@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-internal class ActionProcess_DrawCards : IActionProcess
+internal class ActionProcess_DrawRandomCards : IActionProcess
 {
     List<IActionDropdownInfo> Infos;
     ActionDropDownInfo_Amount intGetter;
     ActionDropDownInfo_Stat statGetter;
     ActionDropDownInfo_Attribute attributeGetter;
+    ActionDropDownInfo_Type typeGetter;
 
-    public ActionProcess_DrawCards(List<Cycle> cycles)
+    public ActionProcess_DrawRandomCards(List<Cycle> cycles,CardBaseLibrary library)
     {
         //--- Amount ---
         var dropDownInt = new ActionDropDownInfo_Ints();
@@ -29,9 +30,11 @@ internal class ActionProcess_DrawCards : IActionProcess
         //--- Stats ---
         statGetter = new ActionDropDownInfo_Stat();
 
-        //--- Type ---
+        //--- Attribute ---
         attributeGetter = new ActionDropDownInfo_Attribute();
 
+        //--- Type ---
+        typeGetter = new ActionDropDownInfo_Type(library);
 
         Infos = new List<IActionDropdownInfo>()
         {

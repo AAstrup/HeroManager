@@ -4,14 +4,18 @@ using System.Collections.Generic;
 public class Ability
 {
     public AbilityEvent abilityEvent;
-    List<Cycle> cycles;
+    public List<Cycle> cycles;
 
     public Ability()
     {
+        cycles = new List<Cycle>();
     }
 
     public void TriggerAbility(BoardState boardState, BoardState.Player player)
     {
+        if (cycles.Count == 0)
+            throw new Exception("Properties not set! (TriggerAbility");
+
         foreach (var cycle in cycles)
         {
             cycle.TriggerCycle(boardState,player);

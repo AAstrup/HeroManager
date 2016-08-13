@@ -8,9 +8,13 @@ public class TreeTournament : TournamentAbstract,ITournament {
     int currentTournamentDay = 0;
     Block tree;
 
+    public List<BattleInfo> battleInfo;
+    int currentBattle; 
+
     public TreeTournament(Division div) : base(div)
     {
-        tree = new Block(div.GetPlayers(),0,div);
+        battleInfo = new List<BattleInfo>();
+        tree = new Block(div.GetPlayers(),0,div,this);
     }
 
     public int GetCurrentDay()
@@ -26,7 +30,23 @@ public class TreeTournament : TournamentAbstract,ITournament {
     public void IncreaseDay()
     {
         currentTournamentDay++;
+        battleInfo = new List<BattleInfo>();
+        currentBattle = 0;
         tree.Battle();
+        Battle();
+    }
+
+    public void BattleFinished()
+    {
+        currentBattle++;
+        Battle();
+    }
+    public void Battle()
+    {
+        if(battleInfo.Count > currentBattle)
+        {
+            battleInfo[currentBattle].battle.FindWinner(battleInfo[currentBattle]);
+        }
     }
 
     public int GetTotalDays()
@@ -40,22 +60,24 @@ public class TreeTournament : TournamentAbstract,ITournament {
         bool HasBattled();
         IPlayer GetWinner();
     }
-    class Block : IBlock
+    public class Block : IBlock
     {
         IBlock _left;
         IBlock _right;
         int _depth;
         IBlock winner;
         Division _div;
+        TreeTournament _tournament;
 
-        public Block(List<IPlayer> blocks, int depth,Division div)
+        public Block(List<IPlayer> blocks, int depth,Division div, TreeTournament tournament)
         {
+            _tournament = tournament;
             _div = div;
             _depth = depth;
             if (blocks.Count > 2)
             {
-                _left = new Block(blocks.GetRange(0, blocks.Count / 2), depth++,div);
-                _right = new Block(blocks.GetRange(blocks.Count / 2, blocks.Count / 2), depth++,div);
+                _left = new Block(blocks.GetRange(0, blocks.Count / 2), depth++,div, _tournament);
+                _right = new Block(blocks.GetRange(blocks.Count / 2, blocks.Count / 2), depth++,div, _tournament);
             }
             else if (blocks.Count == 2)
             {
@@ -79,7 +101,11 @@ public class TreeTournament : TournamentAbstract,ITournament {
 
         void FindWinner()
         {
-            IPlayer win = _div.FindWinner(_left.GetWinner(), _right.GetWinner());
+            _tournament.battleInfo.Add(new BattleInfo(_left.GetWinner(), _right.GetWinner(), this, _div.FindBattleType()));
+        }
+
+        public void WinnerFound(IPlayer win)
+        {
             if (win == _left.GetWinner())
                 winner = _left;
             else if (win == _right.GetWinner())
@@ -87,6 +113,7 @@ public class TreeTournament : TournamentAbstract,ITournament {
             else
                 throw new Exception("Something went wrong, no winner found, bad checks");
             _div.Victory(win);
+            _tournament.BattleFinished();
         }
 
         public bool HasBattled()

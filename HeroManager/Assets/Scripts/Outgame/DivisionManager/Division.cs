@@ -89,10 +89,11 @@ public class Division {
 
     public List<IPlayer> GetPlayers() { return _players; }
 
-    public IPlayer FindWinner(IPlayer player1, IPlayer player2)
+    public IBattle FindBattleType()
     {
-        return _strategy.FindWinner(player1, player2);
+        return _strategy;
     }
+
 
     internal void Victory(IPlayer win)
     {

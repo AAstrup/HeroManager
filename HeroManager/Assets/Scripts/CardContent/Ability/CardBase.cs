@@ -27,7 +27,7 @@ public class CardBase {
         _cardType = CardType.Creature;
 
 
-        _effects = new List<Ability>() { new Ability() };
+        _effects = new List<Ability>() {  };
 
         _creatureType = CreatureType.Beast;
         _name = "Card name";
@@ -52,6 +52,6 @@ public class CardBase {
     }
 }
 
-public enum CardType { Creature, Spell, Weapon }
-public enum CreatureType { None, Mech, Beast, Dragon, Pirate}
+public enum CardType { Creature, Spell, Weapon, All }
+public enum CreatureType { None, Mech, Beast, Dragon, Pirate, All}
 

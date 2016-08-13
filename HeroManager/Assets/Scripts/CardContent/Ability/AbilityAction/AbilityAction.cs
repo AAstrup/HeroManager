@@ -6,9 +6,9 @@ public class AbilityAction
     List<IActionProcess> processes;
 
 
-    public AbilityAction(List<Cycle> cycles)
+    public AbilityAction(List<Cycle> cycles, CardBaseLibrary library)
     {
-        IActionProcess process = new ActionProcess_DrawCards(cycles);
+        IActionProcess process = new ActionProcess_DrawRandomCards(cycles,library);
 
     }
 
