@@ -5,3 +5,6 @@ Temp/*
 *.pidb
 *.userprefs
 *.unityproj
+*.suo
+HeroManager/Library/*
+HeroManager/Library/metadata/*
