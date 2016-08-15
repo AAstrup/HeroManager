@@ -46,4 +46,9 @@ public class ReferencesMock : IReferences
     public void Print(string v)
     {
     }
+
+    public void Initialize(IUnityAdapter adapter)
+    {
+        throw new NotImplementedException();
+    }
 }
