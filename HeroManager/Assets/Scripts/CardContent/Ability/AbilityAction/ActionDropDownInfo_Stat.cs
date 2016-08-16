@@ -41,11 +41,3 @@ public class ActionDropDownInfo_Stat : IActionDropdownInfo
         return stats[_index];
     }
 }
-
-public enum Stat
-{
-    Stat1,
-    Stat2,
-    Cost,
-    CreatureType
-}
