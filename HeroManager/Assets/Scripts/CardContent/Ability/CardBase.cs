@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CardBase {
 
@@ -44,6 +46,51 @@ public class CardBase {
         _name = name;
         _flavorText = flavorText;
         _creatureType = creatureType;
+    }
+
+   internal void SetCreatureType(Dropdown drop)
+    {
+        if (drop.interactable == true)
+        {
+            string val = drop.options[drop.value].text.ToString();
+            _creatureType = (CreatureType)Enum.Parse(typeof(CreatureType), val);
+        }
+    }
+
+   public void SetName(string arg0)
+   {
+       _name = arg0;
+   }
+
+   public void SetFlavourText(string arg0)
+   {
+       _flavorText = arg0;
+   }
+
+    internal void SetStat1(Dropdown drop)
+    {
+        if (drop.interactable == true)
+        {
+            string val = drop.options[drop.value].text.ToString();
+            _stat1 = (int) int.Parse(val);
+        }
+    }
+
+    internal void SetCardType(Dropdown drop)
+    {
+        if (drop.interactable == true) {
+            string val = drop.options[drop.value].text.ToString();
+            _cardType =(CardType) Enum.Parse(typeof(CardType), val);
+        }
+    }
+
+    internal void SetStat2(Dropdown drop)
+    {
+        if (drop.interactable == true)
+        {
+            string val = drop.options[drop.value].text.ToString();
+            _stat2 = (int)int.Parse(val);
+        }
     }
 
     public string GetDescription(int index)
