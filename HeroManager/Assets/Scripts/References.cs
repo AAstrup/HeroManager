@@ -8,9 +8,12 @@ public class References : IReferences
     public LibrariesContainer librariesContainer;
     public DeckFactory factory;
     public LeagueHandler leagueHandler;
-    
-    public void Initialize()
+    public IUnityAdapter _adapter;
+
+    public void Initialize(IUnityAdapter adapter)
     {
+        _adapter = adapter;
+
         librariesContainer = new LibrariesContainer();
         librariesContainer.Initialize();
 
@@ -19,6 +22,11 @@ public class References : IReferences
 
         leagueHandler = new LeagueHandler();
         leagueHandler.Initialize(factory,this);
+    }
+
+    public GameObject GetCardCreationUI()
+    {
+        return _adapter.InstatiateUI(librariesContainer.prefabLibrary.Prefabs["CardCreationUIPrefab"]);
     }
 
     public void Update()

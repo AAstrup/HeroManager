@@ -8,3 +8,5 @@ Temp/*
 *.suo
 HeroManager/Library/*
 HeroManager/Library/metadata/*
+HeroManager/Assets/Scripts/Outgame/DeckCreation/UI.meta
+HeroManager/Assets/Scripts/Outgame/DeckCreation/UI.meta
