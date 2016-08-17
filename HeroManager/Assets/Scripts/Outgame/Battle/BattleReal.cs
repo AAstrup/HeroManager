@@ -14,8 +14,9 @@ public class BattleReal : IBattle
         }
         else
         {
-            Debug.Log("Battle Player start here (Not ENDED)!");
+            //Debug.Log("Battle Player start here (Not ENDED)!");
             //Kristoffer skriver kode her
+            
         }
     }
 
