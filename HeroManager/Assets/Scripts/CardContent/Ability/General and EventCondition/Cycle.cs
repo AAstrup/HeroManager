@@ -25,4 +25,9 @@ public class Cycle
             selectCondition.ChooseTarget(boardState,boardConditionResult, abilityAction);
         }
     }
+
+    internal float GetCost()
+    {
+        throw new NotImplementedException();
+    }
 }

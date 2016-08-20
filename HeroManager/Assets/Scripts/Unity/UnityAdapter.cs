@@ -5,11 +5,14 @@ using System;
 public class UnityAdapter : MonoBehaviour, IUnityAdapter {
 
     public References Ref;
+    public CardCreatorManager creatorManager;
 
     // Use this for initialization
     void Start () {
         Ref = new References();
         Ref.Initialize(this);
+
+        creatorManager.Initialize(this);
     }
 
     void Update() {

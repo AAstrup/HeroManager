@@ -26,6 +26,17 @@ public class Ability
     {
         return "Nothing to explain yet...";
     }
+
+    public float GetCost(Dictionary<AbilityEvent,float> abilityEventCost)
+    {
+        float cyclesAmount = 0f;
+        foreach (Cycle cycle in cycles)
+        {
+            cyclesAmount += cycle.GetCost();
+        }
+
+        return abilityEventCost[abilityEvent] * cyclesAmount;
+    }
 }
 
 public enum AbilityEvent
