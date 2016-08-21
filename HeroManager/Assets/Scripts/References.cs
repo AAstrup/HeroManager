@@ -10,6 +10,7 @@ public class References : IReferences
     public LeagueHandler leagueHandler;
     public IUnityAdapter _adapter;
 
+
     public void Initialize(IUnityAdapter adapter)
     {
         _adapter = adapter;

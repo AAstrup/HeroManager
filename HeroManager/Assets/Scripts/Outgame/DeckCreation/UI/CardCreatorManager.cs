@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CardCreatorManager : MonoBehaviour {
     
@@ -119,7 +120,11 @@ public class CardCreatorManager : MonoBehaviour {
     public void SaveCard()
     {
         cardSaveLoader.Save(cardBase);
+        //Restart();
+    }
 
-
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

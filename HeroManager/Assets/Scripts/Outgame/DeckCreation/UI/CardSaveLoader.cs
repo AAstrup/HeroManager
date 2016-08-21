@@ -1,9 +1,37 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
-internal class CardSaveLoader
+public class CardSaveLoader
 {
-    internal void Save(CardBase cardBase)
+    string path = Application.dataPath.ToString() + @"/Resources/";
+    string fileName = "JsonBaseCards.txt";
+
+    public void Save(CardBase data)
     {
-        throw new NotImplementedException();
+        string file = path + fileName;
+
+        BaseCardsSaveContainer baseCardsSaveContainer;
+        if (File.Exists(file))
+        {
+            baseCardsSaveContainer = LoadBaseCards();
+        }
+        else
+        {
+            baseCardsSaveContainer = new BaseCardsSaveContainer();
+        }
+        baseCardsSaveContainer.AddCard(data);
+        string json = JsonUtility.ToJson(baseCardsSaveContainer);
+
+        //write string to file
+        File.WriteAllText(@"" + path + fileName, json);
+    }
+
+    public BaseCardsSaveContainer LoadBaseCards()
+    {
+        string baseCardJson = Resources.Load<TextAsset>("JsonBaseCards").text;
+        return JsonUtility.FromJson<BaseCardsSaveContainer>(baseCardJson);
     }
 }

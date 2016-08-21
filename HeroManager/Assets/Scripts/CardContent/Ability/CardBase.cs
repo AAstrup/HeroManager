@@ -4,17 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+[Serializable]
 public class CardBase {
-
+    
     public int _id;
     public List<CardCost> _costs;
     public int _stat1;//creature attack or weapon attack
+
+    internal void SetID(int count)
+    {
+        _id = count;
+    }
+    
     public int _stat2;//creature health or weapon durability
     public CardType _cardType;
     public CreatureType _creatureType;
-
+    
     public List<Ability> _effects;
-
+    
     public string _name;
     public string _flavorText;
 
