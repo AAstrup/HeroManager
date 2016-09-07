@@ -17,4 +17,9 @@ public class Deck {
         else
             throw new System.Exception("Deck aleredy full");
     }
+
+    public List<CardBase> GetCards()
+    {
+        return deck;
+    }
 }

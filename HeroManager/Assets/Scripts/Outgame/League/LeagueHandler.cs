@@ -6,7 +6,7 @@ public class LeagueHandler
     public DivisionHandler divHandler;
     public MM_PlayerHandler playerHandler;
     public DayHandler dayHandler;
-    public void Initialize(IDeckFactory factory,IReferences Ref)
+    public void Initialize(IDeckFactory factory,IReferences Ref,References references)
     {
 
         playerHandler = new MM_PlayerHandler();
@@ -16,6 +16,6 @@ public class LeagueHandler
         divHandler.Initialize(Ref, playerHandler.GetPlayers(), new List<int> { 3, 3, 3 });
 
         dayHandler = new DayHandler();
-        dayHandler.Initialize(Ref);
+        dayHandler.Initialize(Ref,references);
     }
 }

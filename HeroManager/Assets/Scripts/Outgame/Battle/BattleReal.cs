@@ -16,7 +16,7 @@ public class BattleReal : IBattle
         {
             //Debug.Log("Battle Player start here (Not ENDED)!");
             //Kristoffer skriver kode her
-            
+            battleInfo._references.InGameStart(battleInfo);
         }
     }
 

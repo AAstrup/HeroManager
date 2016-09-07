@@ -10,8 +10,13 @@ public class References : IReferences
     public LeagueHandler leagueHandler;
     public IUnityAdapter _adapter;
 
+    public bool InGame;
+    public InGameController IGController;
+
     public void Initialize(IUnityAdapter adapter)
     {
+        InGame = false;
+
         _adapter = adapter;
 
         librariesContainer = new LibrariesContainer();
@@ -21,7 +26,7 @@ public class References : IReferences
         factory.Initialize();
 
         leagueHandler = new LeagueHandler();
-        leagueHandler.Initialize(factory,this);
+        leagueHandler.Initialize(factory,this,this);
     }
 
     public GameObject GetCardCreationUI()
@@ -32,6 +37,11 @@ public class References : IReferences
     public void Update()
     {
         leagueHandler.dayHandler.Update();
+
+        if (InGame)
+        {
+            IGController.Update();
+        }
     }
 
     public void EndSeason()
@@ -53,4 +63,12 @@ public class References : IReferences
     {
         Debug.Log(v);
     }
+
+    public void InGameStart(BattleInfo battleinfo)
+    {
+        InGame = true;
+        IGController = new InGameController();
+        IGController.Init(battleinfo); 
+    }
+
 }

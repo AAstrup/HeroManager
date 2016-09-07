@@ -6,15 +6,17 @@ using System;
 public class DayHandler
 {
     IReferences _Ref;
+    private References _references;
     TournamentFactory tournamentfactory;
     int Day = 0;
 
     public delegate void NextPlayerDayAction(Division div);
     public event NextPlayerDayAction OnNewPlayerDay;
 
-    public void Initialize(IReferences Ref)
+    public void Initialize(IReferences Ref,References references)
     {
         _Ref = Ref;
+        _references = references;
         tournamentfactory = new TournamentFactory();
         List<Division> divs = _Ref.GetDivisions();
         for (int i = 0; i < Ref.GetDivisions().Count; i++)
@@ -78,7 +80,7 @@ public class DayHandler
         List<ITournament> toReturn = new List<ITournament>();
         for (int i = 0; i < amount; i++)
         {
-            toReturn.Add( tournamentfactory.CreateTournament(div));
+            toReturn.Add( tournamentfactory.CreateTournament(_references,div));
         }
         return toReturn;
     }

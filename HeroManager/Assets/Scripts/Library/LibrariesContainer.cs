@@ -2,13 +2,13 @@
 
 public class LibrariesContainer
 {
-    public static LibrariesContainer instance;
+    /*public static LibrariesContainer instance;
 
     void Awake()
     {
         instance = this;
         instance.Initialize();
-    }
+    }*/
 
     public PrefabLibrary prefabLibrary;
     public SpriteLibrary spriteLibrary;

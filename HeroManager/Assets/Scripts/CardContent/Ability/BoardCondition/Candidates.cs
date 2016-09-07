@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Candidates
 {
@@ -39,8 +40,8 @@ public class Candidates
 
     public List<CardActive> GetCandidates(BoardState boardState, BoardState.Player player)
     {
-        var meContent = boardState.playerToCardActive[player];
-        var opContent = boardState.playerToCardActive[OtherPlayer(player)];
+        var meContent = boardState.PlayerContents[player];
+        var opContent = boardState.PlayerContents[OtherPlayer(player)];
         List <CardActive> toReturn = new List<CardActive>();
 
         if (allCardSet.Contains(CardList.MyHand))
@@ -54,14 +55,14 @@ public class Candidates
             toReturn.AddRange(opContent.deck);
 
         if (allCardSet.Contains(CardList.MyBoard))
-            toReturn.AddRange(meContent.board);
+            toReturn.AddRange(meContent.board.Cast<CardActive>());
         if (allCardSet.Contains(CardList.OpBoard))
-            toReturn.AddRange(opContent.board);
+            toReturn.AddRange(opContent.board.Cast<CardActive>());
 
         if (allCardSet.Contains(CardList.MyGraveyard))
-            toReturn.AddRange(meContent.graveyard);
+            toReturn.AddRange(meContent.graveyard.Cast<CardActive>());
         if (allCardSet.Contains(CardList.OpGraveyard))
-            toReturn.AddRange(opContent.graveyard);
+            toReturn.AddRange(opContent.graveyard.Cast<CardActive>());
 
         if (allCardSet.Contains(CardList.MyEquippedWeapon))
             toReturn.AddRange(meContent.equipWeapons);

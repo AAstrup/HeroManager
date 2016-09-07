@@ -8,7 +8,7 @@ public class ReferencesMock : IReferences
     public DivisionHandler _divHandler;
     public MM_PlayerHandler _playerHandler;
     public DayHandler _dayHandler;
-    public ReferencesMock(DivisionHandler divHandler, MM_PlayerHandler playerHandler,DayHandler dayHandler,List<int> days)
+    public ReferencesMock(References references,DivisionHandler divHandler, MM_PlayerHandler playerHandler,DayHandler dayHandler,List<int> days)
     {
         _divHandler = divHandler;
         _playerHandler = playerHandler;
@@ -16,7 +16,7 @@ public class ReferencesMock : IReferences
 
         _playerHandler.Initialize(new DeckFactoryMock());
         divHandler.Initialize(this, _playerHandler.GetPlayers(), days);
-        _dayHandler.Initialize(this);
+        _dayHandler.Initialize(this,references);
     }
 
     public void Update()

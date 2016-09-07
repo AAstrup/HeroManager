@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TournamentFactory {
 
-	public ITournament CreateTournament(Division info)
+	public ITournament CreateTournament(References references,Division info)
     {
-        return new TreeTournament(info);
+        return new TreeTournament(references,info);
     }
 }

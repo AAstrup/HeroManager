@@ -4,9 +4,10 @@
     public IPlayer p2;
     public IBattle battle;
     public TreeTournament.Block block;
-    //public IReferences _reference;
-    public BattleInfo(IPlayer P1,IPlayer P2, TreeTournament.Block Block,IBattle Battle)
+    public References _references;
+    public BattleInfo(References references,IPlayer P1,IPlayer P2, TreeTournament.Block Block,IBattle Battle)
     {
+        _references = references;
         p1 = P1;
         p2 = P2;
         battle = Battle;
