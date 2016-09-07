@@ -1,0 +1,1 @@
+{"cards":[{"_id":0,"_stat1":3,"_stat2":2,"_cardType":0,"_creatureType":2,"_name":"Asd","_flavorText":"Asd"},{"_id":1,"_stat1":1,"_stat2":1,"_cardType":0,"_creatureType":2,"_name":"Card name","_flavorText":"Fancy text"},{"_id":2,"_stat1":2,"_stat2":1,"_cardType":0,"_creatureType":2,"_name":"Card name","_flavorText":"Fancy text"}]}

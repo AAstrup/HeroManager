@@ -4,17 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+[Serializable]
 public class CardBase {
-
+    
     public int _id;
     public List<CardCost> _costs;
     public int _stat1;//creature attack or weapon attack
+
+    internal void SetID(int count)
+    {
+        _id = count;
+    }
+    
     public int _stat2;//creature health or weapon durability
     public CardType _cardType;
     public CreatureType _creatureType;
-
+    
     public List<Ability> _effects;
-
+    
     public string _name;
     public string _flavorText;
 
@@ -23,7 +30,11 @@ public class CardBase {
     /// </summary>
     public CardBase()
     {
-        _costs = new List<CardCost>(){new CardCost(CardColor.Black,1)};
+        _costs = new List<CardCost>(){
+            new CardCost(CardColor.White, 10,0),
+            new CardCost(CardColor.Red, 0,0),
+            new CardCost(CardColor.Green, 0,0)
+        };
         _stat1 = 1;
         _stat2 = 1;
         _cardType = CardType.Creature;
@@ -100,7 +111,34 @@ public class CardBase {
 
     public string GetCardText()
     {
-        return "Her bør alle dens relevante effekter skrives";
+        //"Her bør alle dens relevante effekter skrives"
+        return "No effect";
+    }
+
+    public void SetCrystalType(int index, Dropdown drop)
+    {
+         if (drop.interactable == true)
+        {
+            string val = drop.options[drop.value].text.ToString();
+            _costs[index]._color = (CardColor)Enum.Parse(typeof(CardColor), val);
+        }
+    }
+
+    public CardColor GetCrystalType(int crystalNumberIndex)
+    {
+        return _costs[crystalNumberIndex]._color;
+    }
+
+    public void SetCrystalAmount(int index, Dropdown drop)
+    {
+        if (drop.interactable == true)
+        {
+            string val = drop.options[drop.value].text.ToString();
+            if(val.Equals("None"))
+                _costs[index]._percentageAmount = 0;
+            else //comes at format as "10%"
+                _costs[index]._percentageAmount = (int)int.Parse(val.Substring(0,val.Length - 1));
+        }
     }
 }
 

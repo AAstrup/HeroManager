@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using UnityEngine.UI;
 
 public class CardBaseVisualizer
 {
@@ -53,28 +55,67 @@ public class CardBaseVisualizer
             visual.Texts["Stat2Text"].transform.gameObject.SetActive(false);
             visual.Images["Stat2Back"].transform.gameObject.SetActive(false);
         }
-        if (cardbase._costs.Count == 1)
+
+        if (cardbase._costs[2]._percentageAmount > 0)
         {
-            visual.Images["CrystalBack2"].transform.gameObject.SetActive(false);
-            visual.Texts["CrystalText2"].transform.gameObject.SetActive(false);
-            visual.Images["CrystalBack3"].transform.gameObject.SetActive(false);
-            visual.Texts["CrystalText3"].transform.gameObject.SetActive(false);
-        }
-        else if (cardbase._costs.Count == 2)
-        {
-            visual.Images["CrystalBack2"].transform.gameObject.SetActive(true);
-            visual.Texts["CrystalText2"].transform.gameObject.SetActive(true);
-            visual.Images["CrystalBack3"].transform.gameObject.SetActive(false);
-            visual.Texts["CrystalText3"].transform.gameObject.SetActive(false);
-        }
-        else if (cardbase._costs.Count == 3)
-        {
+            visual.Images["CrystalBack1"].transform.gameObject.SetActive(true);
+            visual.Texts["CrystalText1"].transform.gameObject.SetActive(true);
             visual.Images["CrystalBack2"].transform.gameObject.SetActive(true);
             visual.Texts["CrystalText2"].transform.gameObject.SetActive(true);
             visual.Images["CrystalBack3"].transform.gameObject.SetActive(true);
             visual.Texts["CrystalText3"].transform.gameObject.SetActive(true);
         }
+        else if (cardbase._costs[1]._percentageAmount > 0)
+        {
+            visual.Images["CrystalBack1"].transform.gameObject.SetActive(true);
+            visual.Texts["CrystalText1"].transform.gameObject.SetActive(true);
+            visual.Images["CrystalBack2"].transform.gameObject.SetActive(true);
+            visual.Texts["CrystalText2"].transform.gameObject.SetActive(true);
+            visual.Images["CrystalBack3"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText3"].transform.gameObject.SetActive(false);
+        }
+        else if (cardbase._costs[0]._percentageAmount > 0)
+        {
+            visual.Images["CrystalBack1"].transform.gameObject.SetActive(true);
+            visual.Texts["CrystalText1"].transform.gameObject.SetActive(true);
+            visual.Images["CrystalBack2"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText2"].transform.gameObject.SetActive(false);
+            visual.Images["CrystalBack3"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText3"].transform.gameObject.SetActive(false);
+        }
+        else
+        {
+            visual.Images["CrystalBack1"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText1"].transform.gameObject.SetActive(false);
+            visual.Images["CrystalBack2"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText2"].transform.gameObject.SetActive(false);
+            visual.Images["CrystalBack3"].transform.gameObject.SetActive(false);
+            visual.Texts["CrystalText3"].transform.gameObject.SetActive(false);
+        }
     }
 
+    public void SetText(string input)
+    {
+        visual.Texts["Text"].text = input;
+    }
 
+    public void SetTitle(string input)
+    {
+        visual.Texts["Title"].text = input;
+    }
+
+    public void SetType(string input)
+    {
+        visual.Texts["Type"].text = input;
+    }
+
+    public void SetStat1Text(string input)
+    {
+        visual.Texts["Stat1Text"].text = input;
+    }
+
+    public void SetStat2Text(string input)
+    {
+        visual.Texts["Stat2Text"].text = input;
+    }
 }
