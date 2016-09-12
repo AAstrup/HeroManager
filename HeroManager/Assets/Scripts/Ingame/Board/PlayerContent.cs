@@ -45,7 +45,7 @@ public class PlayerContent
         CreateController(Type,IGC);
 
         //TEMP
-        GemColorsUsed = new List<CardColor>(){CardColor.Red,CardColor.White};
+        GemColorsUsed = new List<CardColor>(){CardColor.Red};
     }
 
     private void CreateController(PlayerType type, InGameController igc)

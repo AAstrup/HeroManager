@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class CardBase {
@@ -30,15 +31,18 @@ public class CardBase {
     /// </summary>
     public CardBase()
     {
+        int dice = Random.Range(1, 8+1);
+        int dice2 = Random.Range(1, 5+1);
+
         _costs = new List<CardCost>(){
-            new CardCost(CardColor.White, 10,0),
-            new CardCost(CardColor.Red, 0,0),
+            new CardCost(CardColor.White+dice2, 10,1+dice),
+            new CardCost(CardColor.White, 0,0),
             new CardCost(CardColor.Green, 0,0)
         };
-        _stat1 = 1;
-        _stat2 = 1;
-        _cardType = CardType.Creature;
 
+        _stat1 = 1 + dice;
+        _stat2 = 2 + dice;
+        _cardType = CardType.Creature;
 
         _effects = new List<Ability>() {  };
 

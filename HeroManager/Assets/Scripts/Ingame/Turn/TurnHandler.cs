@@ -29,7 +29,6 @@ public class TurnHandler {
                          controller.SetMode(TurnMode.Play);
                     }
                 }
-
                 break;
             }
             case TurnMode.Play:
@@ -37,10 +36,31 @@ public class TurnHandler {
                 switch (listno)
                 {
                     case 0:
-                        controller._playerContent.hand[targetno].Play();
+                        if (targetno < controller._playerContent.hand.Count)
+                        {
+                            controller._playerContent.hand[targetno].Play();
+                        }
                         break;
                     case 1:
-                        controller.SelectAttacker(controller._playerContent.board[targetno]);
+                        if (targetno < controller._playerContent.board.Count)
+                        {
+                            controller.SelectAttacker(controller._playerContent.board[targetno]);
+                        }
+                        break;
+                }
+                break;
+            }
+            case TurnMode.BoardSelect:
+            {
+                switch (listno)
+                {
+                    case -1:
+                    {
+                        controller.SetMode(TurnMode.Play);
+                        break;
+                    }
+                    case 0:
+                       
                         break;
                 }
                 break;

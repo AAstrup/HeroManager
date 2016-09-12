@@ -21,7 +21,7 @@ public class IGUnitHandler {
 
     public void Heal(Creature creature, int amount)
     {
-        var realamount = Mathf.Min(creature.Base._stat2 - creature.Stats[Stat.Stat2], amount);
+        var realamount = Mathf.Min(creature.GetCardBase()._stat2 - creature.Stats[Stat.Stat2], amount);
         creature.Stats[Stat.Stat2] += realamount;
     }
 

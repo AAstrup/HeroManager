@@ -12,7 +12,7 @@ public class UnityAdapter : MonoBehaviour, IUnityAdapter {
         Ref = new References();
         Ref.Initialize(this);
 
-        creatorManager.Initialize(this);
+        //creatorManager.Initialize(this);
     }
 
     void Update() {

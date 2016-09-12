@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class CardBaseVisualizer
 {
